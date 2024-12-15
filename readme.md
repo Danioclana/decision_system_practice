@@ -172,3 +172,57 @@ Este sistema exemplifica como organizar um projeto em camadas e aplicar as boas 
 1. Configure o banco de dados e o arquivo `.env`.
 2. Execute a API com `python app.py`.
 3. Execute a interface gráfica com `streamlit run streamlit_app.py`.
+
+## Scripts para Popular o Banco
+
+### categories
+```sql
+-- Inserir categorias (para a tabela 'categories')
+INSERT INTO public.categories (name, description) 
+VALUES 
+('Tecnologia', 'Produtos e serviços relacionados à tecnologia'),
+('Saúde', 'Produtos e serviços relacionados à área de saúde'),
+('Alimentos', 'Produtos e serviços relacionados a alimentos e bebidas'),
+('Educação', 'Produtos e serviços voltados à educação');
+```
+### assets
+```sql
+-- Inserir ativos (para a tabela 'assets')
+INSERT INTO public.assets (name, type, category_id) 
+VALUES 
+('Computador', 'Eletrônico', 1),  -- Categoria 'Tecnologia'
+('Smartphone', 'Eletrônico', 1),  -- Categoria 'Tecnologia'
+('Máquina de Café', 'Eletrodoméstico', 3),  -- Categoria 'Alimentos'
+('Monitor', 'Eletrônico', 1),  -- Categoria 'Tecnologia'
+('Ultrassom', 'Equipamento Médico', 2);  -- Categoria 'Saúde'
+```
+### indicators
+```sql
+-- Inserir indicadores (para a tabela 'indicators')
+INSERT INTO public.indicators (name, value, asset_id) 
+VALUES 
+-- Indicadores para 'Computador' 
+('Rentabilidade', 8.5, 22),   -- Rentabilidade do ativo 'Computador'
+('Risco', 3.2, 22),           -- Risco do ativo 'Computador'
+('Valor de Mercado', 5000.00, 1),  -- Valor de Mercado do ativo 'Computador'
+
+-- Indicadores para 'Smartphone'
+('Rentabilidade', 10.0, 1),  -- Rentabilidade do ativo 'Smartphone'
+('Risco', 4.5, 23),           -- Risco do ativo 'Smartphone'
+('Valor de Mercado', 3000.00, 23),  -- Valor de Mercado do ativo 'Smartphone'
+
+-- Indicadores para 'Máquina de Café'
+('Rentabilidade', 5.0, 3),   -- Rentabilidade do ativo 'Máquina de Café'
+('Risco', 2.0, 24),           -- Risco do ativo 'Máquina de Café'
+('Valor de Mercado', 1000.00, 24),  -- Valor de Mercado do ativo 'Máquina de Café'
+
+-- Indicadores para 'Monitor' 
+('Rentabilidade', 6.0, 4),   -- Rentabilidade do ativo 'Monitor'
+('Risco', 3.0, 25),           -- Risco do ativo 'Monitor'
+('Valor de Mercado', 1500.00, 25),  -- Valor de Mercado do ativo 'Monitor'
+
+-- Indicadores para 'Ultrassom' 
+('Rentabilidade', 12.0, 5),  -- Rentabilidade do ativo 'Ultrassom'
+('Risco', 5.0, 26),           -- Risco do ativo 'Ultrassom'
+('Valor de Mercado', 15000.00, 26); -- Valor de Mercado do ativo 'Ultrassom'
+```
